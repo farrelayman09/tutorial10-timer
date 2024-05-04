@@ -81,8 +81,8 @@ impl Executor {
                 let waker = waker_ref(&task);
                 let context = &mut Context::from_waker(&waker);
                 // `BoxFuture<T>` is a type alias for
-                // `Pin<Box<dyn Future<Output = T> + Send + 'static>>`.
-                // We can get a `Pin<&mut dyn Future + Send + 'static>`
+                // `Pin<Box<dyn Future<Output = T> + Send + 'assets>>`.
+                // We can get a `Pin<&mut dyn Future + Send + 'assets>`
                 // from it by calling the `Pin::as_mut` method.
                 if future.as_mut().poll(context).is_pending() {
                     // We're not done processing the future, so put it
@@ -105,6 +105,7 @@ fn main() {
         println!("Farrel's PC: done!");
     });
 
+    println!("Farrel's PC: hey hey!");
     // Drop the spawner so that our executor knows it is finished and won't
     // receive more incoming tasks to run.
     drop(spawner);
